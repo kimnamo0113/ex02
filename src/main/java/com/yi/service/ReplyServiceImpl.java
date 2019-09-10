@@ -39,5 +39,10 @@ public class ReplyServiceImpl implements ReplyService{
 	public List<ReplyVO> listPage(int bno, Creiteria cri) throws Exception {
 		return dao.listPage(bno, cri);
 	}
+
+	@Override
+	public int totalCount(int bno) throws Exception {
+		return dao.totalCount(bno);
+	}
 	
 }

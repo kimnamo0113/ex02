@@ -46,5 +46,10 @@ public class ReplyDAOImpl implements ReplyDAO{
 		
 		return sqlSession.selectList(namespace+".listPage",map);
 	}
+
+	@Override
+	public int totalCount(int bno) throws Exception {
+		return sqlSession.selectOne(namespace+".totalCount",bno);
+	}
 	
 }

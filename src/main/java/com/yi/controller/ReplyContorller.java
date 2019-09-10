@@ -113,7 +113,8 @@ public class ReplyContorller {
 			
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(cri);
-			pageMaker.setTotalCount(67);
+			
+			pageMaker.setTotalCount(service.totalCount(bno));
 			
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("list", list);

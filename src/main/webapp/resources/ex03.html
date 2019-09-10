@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.2.0/handlebars.min.js"></script>
+</head>
+<body>
+	<ul id="list">
+		
+	</ul>
+	
+	
+	
+	<script id="template" type="text/x-handlebars-template">
+		{{#each.}}
+		<li class="item">
+			<div>{{rno}}</div>
+			<div>{{replyer}}</div>
+			<div>{{replytext}}</div>
+			<div>{{tempdate replydate}}</div>
+		</li>
+		{{/each}}
+	</script>
+	<script>
+		var arr = ["일","월","화","수","목","금","토"];	
+	
+		Handlebars.registerHelper("tempdate",function(time){
+			var date = new Date(time);
+			var year = date.getFullYear();
+			var month = date.getMonth()+1;
+			var day = date.getDate();
+			var week = date.getDay();
+			return year + "-" + month + "-" + day + "-"+ arr[week]+"요일"; 
+		})
+	
+		var data = [
+			{rno:1,replyer:"user01", replytext:"댓글 1", replydate:new Date(2018,5,22)},
+			{rno:2,replyer:"user02", replytext:"댓글 1", replydate:new Date(2018,1,22)},
+			{rno:3,replyer:"user03", replytext:"댓글 1", replydate:new Date(2019,2,11)},
+			{rno:4,replyer:"user04", replytext:"댓글 1", replydate:new Date(2019,5,11)},
+			{rno:5,replyer:"user05", replytext:"댓글 1", replydate:new Date(2019,11,10)},
+			{rno:6,replyer:"user06", replytext:"댓글 1", replydate:new Date(2019,9,1)},
+			{rno:7,replyer:"user07", replytext:"댓글 1", replydate:new Date(2019,10,30)},
+			
+		]
+	
+		var source = $("#template").html();
+		var func = Handlebars.compile(source);
+		var str = func(data);
+		$("#list").append(str);
+	
+	</script>
+	
+	
+	<hr>
+	
+	<div id="wrap">
+		<script id="template2" type="text/x-handlebars-template">
+		<h1>{{title}}</h1>
+		<ul>
+		{{#list}}
+			
+				<li class="item">
+					<div>{{rno}}</div>
+					<div>{{replyer}}</div>
+					<div>{{replytext}}</div>
+					<div>{{tempdate replydate}}</div>
+				</li>
+		{{/list}}
+		<ul>
+		</script>
+	</div>
+	
+	
+	
+	<script>
+		var data = {
+				title:"handlebars plguin사용합니다.",
+				list:[
+					{rno:1,replyer:"user01", replytext:"댓글 1", replydate:new Date(2018,5,22)},
+					{rno:2,replyer:"user02", replytext:"댓글 1", replydate:new Date(2018,1,22)},
+					{rno:3,replyer:"user03", replytext:"댓글 1", replydate:new Date(2019,2,11)},
+					{rno:4,replyer:"user04", replytext:"댓글 1", replydate:new Date(2019,5,11)},
+					{rno:5,replyer:"user05", replytext:"댓글 1", replydate:new Date(2019,11,10)},
+					{rno:6,replyer:"user06", replytext:"댓글 1", replydate:new Date(2019,9,1)},
+					{rno:7,replyer:"user07", replytext:"댓글 1", replydate:new Date(2019,10,30)}
+				]
+		}
+		var source2 = $("#template2").html();
+		var func = Handlebars.compile(source2);
+		var str = func(data);
+		$("#wrap").append(str);
+		
+		
+	</script>
+	
+	
+	
+	<hr>
+	
+	<table id="gogobab">
+		<script id="template3" type="text/x-handlebars-template">
+			<tr>
+				<th>이름</th>
+				<th>아이디</th>
+				<th>메일주소</th>
+			</tr>
+			{{#users}}
+			<tr>
+				<td>{{name}}</td>
+				<td>{{id}}</td>
+				<td>{{email}}</td>
+			</tr>
+			{{/users}}
+		</script>
+	
+	</table>
+	
+	
+		<script>
+		var data = {
+				title:"handlebars plguin사용합니다.",
+				users:[
+					{name:"홍길동1",id:"user01", email:"aaa1@gmail.com"},
+					{name:"홍길동2",id:"user02", email:"aaa1@gmail.com"},
+					{name:"홍길동3",id:"user03", email:"aaa1@gmail.com"},
+					{name:"홍길동4",id:"user04", email:"aaa1@gmail.com"},
+					{name:"홍길동5",id:"user05", email:"aaa1@gmail.com"}
+				]
+		}
+		
+		
+		var source3 = $("#template3").html();
+		var func = Handlebars.compile(source3);
+		var str = func(data);
+		$("#gogobab").append(str);
+		
+		
+	</script>
+</body>
+</html>
